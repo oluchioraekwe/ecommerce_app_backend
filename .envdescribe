@@ -1,0 +1,3 @@
+MONGO_URL = local mongodb connection url
+MONGO_URL_TEST = test mongodb connection
+MONGO_ATLAS_URL = connection string for atlas
