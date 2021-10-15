@@ -10,8 +10,8 @@ var http = require('http');
 /**
  * you can select to connectly locally or remotely
  */
-//var run = require('../remotedatabase/databaseConnect');
-var run = require('../localdatabase/localdatabase');
+var run = require('../remotedatabase/databaseConnect');
+//var run = require('../localdatabase/localdatabase');
 run();
 /**
  * Get port from environment and store in Express.

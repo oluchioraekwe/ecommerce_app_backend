@@ -1,9 +1,25 @@
-import { Router, Request, Response } from "express";
+import { Router } from 'express';
+import {
+    verifyToken,
+    verifyAndAuthorizeUser,
+    verifyTokenAndAdmin
+} from '../middleware/verifyToken';
+import {
+    updateUser,
+    verifyUser,
+    removeUser,
+    getUser,
+    getAllUser,
+    userStatistics
+} from '../controllers/userController';
 const router = Router();
 
-/* GET users listing. */
-router.get("/", function (req: Request, res: Response) {
-  res.send("respond with a resource");
-});
+/* users route */
 
+router.get('/', verifyToken, verifyTokenAndAdmin, getAllUser);
+router.get('/stats', verifyToken, verifyTokenAndAdmin, userStatistics);
+router.get('/:id', verifyToken, verifyTokenAndAdmin, getUser);
+router.put('/update/:id', verifyToken, verifyAndAuthorizeUser, updateUser);
+router.post('/verify/:id', verifyUser);
+router.delete('/delete/:id', verifyToken, verifyAndAuthorizeUser, removeUser);
 export default router;

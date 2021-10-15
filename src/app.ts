@@ -6,6 +6,10 @@ import logger from 'morgan';
 
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
+import authRouter from './routes/auth';
+import productRouter from './routes/product';
+import cartRouter from './routes/cart';
+import orderRouter from './routes/order';
 
 const app = express();
 
@@ -20,7 +24,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/users', usersRouter);
+app.use('/api', authRouter);
+app.use('/api/products', productRouter);
+app.use('/api/cart', cartRouter);
+app.use('/api/orders', orderRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req: Request, res: Response, next: NextFunction) {
